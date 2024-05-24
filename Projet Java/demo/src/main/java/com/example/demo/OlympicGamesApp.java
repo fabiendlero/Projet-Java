@@ -32,7 +32,7 @@ public class OlympicGamesApp extends Application {
 
         VBox root = new VBox(tabPane);
         Scene scene = new Scene(root, 800, 600);
-        primaryStage.setTitle("Olympic Games Management");
+        primaryStage.setTitle("Gestion des Jeux Olympiques 2024");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
