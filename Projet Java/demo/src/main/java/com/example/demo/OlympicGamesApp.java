@@ -42,7 +42,7 @@ public class OlympicGamesApp extends Application {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
             VBox tabContent = loader.load();
             Tab tab = new Tab();
-            tab.setText(fxmlFile.replace("_tab.fxml", "").toUpperCase());
+            tab.setText(fxmlFile.replace("event_tab.fxml", "épreuve").replace("result_tab.fxml", "résultat").replace("_tab.fxml", "").toUpperCase());
             tab.setContent(tabContent);
 
             // Set the OlympicGames object in the controllers
