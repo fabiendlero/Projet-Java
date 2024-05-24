@@ -41,6 +41,6 @@
         <Label text="Sport:" GridPane.rowIndex="1" />
         <ComboBox fx:id="sportComboBox" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-        <Button fx:id="addEventButton" mnemonicParsing="false" onAction="#addEvent" text="Ajouter l'épreuve" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <Button fx:id="addEventButton" mnemonicParsing="false" onAction="#addEvent" text="Ajouter" GridPane.columnIndex="1" GridPane.rowIndex="2" />
     </GridPane>
 </VBox>

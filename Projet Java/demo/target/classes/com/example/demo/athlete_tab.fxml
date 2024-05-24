@@ -49,7 +49,7 @@
 
         <Label text="Sexe:" GridPane.rowIndex="3" />
         <TextField fx:id="genderField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-        <Button fx:id="addAthleteButton" mnemonicParsing="false" onAction="#addAthlete" text="Add Athlete" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+        <Button fx:id="addAthleteButton" mnemonicParsing="false" onAction="#addAthlete" text="Ajouter" GridPane.columnIndex="1" GridPane.rowIndex="4" />
 
     </GridPane>
 </VBox>

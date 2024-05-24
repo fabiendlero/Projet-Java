@@ -56,6 +56,6 @@
         <Label text="Médaille:" GridPane.rowIndex="4" />
         <ComboBox fx:id="medalComboBox" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
 
-        <Button fx:id="addResultButton" mnemonicParsing="false" onAction="#addResult" text="Add Result" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+        <Button fx:id="addResultButton" mnemonicParsing="false" onAction="#addResult" text="Ajouter" GridPane.columnIndex="1" GridPane.rowIndex="5" />
     </GridPane>
 </VBox>
