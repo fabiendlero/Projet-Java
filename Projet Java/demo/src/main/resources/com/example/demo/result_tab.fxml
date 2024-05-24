@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox minHeight="600.0" minWidth="800.0" spacing="10.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.ResultTabController">
+    <padding>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+    </padding>
+
+    <TableView fx:id="resultTableView" prefHeight="304.0" prefWidth="782.0">
+        <columns>
+            <TableColumn fx:id="athleteColumn" prefWidth="221.6000179052353" text="Athlete" />
+            <TableColumn fx:id="eventColumn" prefWidth="244.0" text="Epreuve" />
+            <TableColumn fx:id="positionColumn" prefWidth="116.79995727539062" text="Position" />
+            <TableColumn fx:id="scoreColumn" prefWidth="118.4000244140625" text="Score" />
+            <TableColumn fx:id="medalColumn" prefWidth="76.0" text="Médaille" />
+        </columns>
+    </TableView>
+
+    <GridPane hgap="10.0" vgap="10.0">
+        <columnConstraints>
+            <ColumnConstraints halignment="RIGHT" />
+            <ColumnConstraints hgrow="SOMETIMES" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+        </rowConstraints>
+
+        <Label text="Athlete:" />
+        <ComboBox fx:id="athleteComboBox" prefWidth="200.0" GridPane.columnIndex="1" />
+
+        <Label text="Epreuve:" GridPane.rowIndex="1" />
+        <ComboBox fx:id="eventComboBox" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+        <Label text="Position:" GridPane.rowIndex="2" />
+        <TextField fx:id="positionField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+        <Label text="Score:" GridPane.rowIndex="3" />
+        <TextField fx:id="scoreField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+        <Label text="Médaille:" GridPane.rowIndex="4" />
+        <ComboBox fx:id="medalComboBox" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+        <Button fx:id="addResultButton" mnemonicParsing="false" onAction="#addResult" text="Add Result" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+    </GridPane>
+</VBox>
