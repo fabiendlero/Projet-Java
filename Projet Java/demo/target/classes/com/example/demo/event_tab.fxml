@@ -19,7 +19,7 @@
 
     <TableView fx:id="eventTableView">
         <columns>
-            <TableColumn fx:id="nameColumn" prefWidth="379.19995725154877" text="Evènement" />
+            <TableColumn fx:id="nameColumn" prefWidth="379.19995725154877" text="Epreuve" />
             <TableColumn fx:id="sportColumn" minWidth="0.0" prefWidth="397.6000061035156" text="Sport" />
         </columns>
     </TableView>
@@ -35,12 +35,12 @@
             <RowConstraints />
         </rowConstraints>
 
-        <Label text="Evènement" />
+        <Label text="Epreuve" />
         <TextField fx:id="nameField" GridPane.columnIndex="1" />
 
         <Label text="Sport:" GridPane.rowIndex="1" />
         <ComboBox fx:id="sportComboBox" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-        <Button fx:id="addEventButton" mnemonicParsing="false" onAction="#addEvent" text="Ajouter l'évènement" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <Button fx:id="addEventButton" mnemonicParsing="false" onAction="#addEvent" text="Ajouter l'épreuve" GridPane.columnIndex="1" GridPane.rowIndex="2" />
     </GridPane>
 </VBox>
