@@ -29,6 +29,8 @@ public class AthleteTabController {
     private TextField genderField;
     @FXML
     private Button addAthleteButton;
+    @FXML
+    private Button deleteAthleteButton;
 
     private OlympicGames olympicGames;
     private ObservableList<Athlete> athleteList;
@@ -50,7 +52,6 @@ public class AthleteTabController {
     @FXML
     private void addAthlete() {
         try {
-            System.out.println("");
             String name = nameField.getText();
             String country = countryField.getText();
             int age = Integer.parseInt(ageField.getText());
@@ -63,6 +64,17 @@ public class AthleteTabController {
         } catch (Exception e) {
             System.out.println("Error adding athlete: " + e.getMessage());
             e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void deleteAthlete() {
+        Athlete selectedAthlete = athleteTableView.getSelectionModel().getSelectedItem();
+        if (selectedAthlete != null) {
+            olympicGames.removeAthlete(selectedAthlete);
+            athleteList.remove(selectedAthlete);
+        } else {
+            System.out.println("No athlete selected for deletion.");
         }
     }
 

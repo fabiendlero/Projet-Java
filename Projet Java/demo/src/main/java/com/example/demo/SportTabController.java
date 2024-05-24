@@ -4,7 +4,10 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 
 public class SportTabController {
     @FXML
@@ -15,6 +18,8 @@ public class SportTabController {
     private TextField nameField;
     @FXML
     private Button addSportButton;
+    @FXML
+    private Button removeSportButton;
 
     private OlympicGames olympicGames;
     private ObservableList<Sport> sportList;
@@ -42,6 +47,19 @@ public class SportTabController {
         }
     }
 
+    @FXML
+    private void removeSport() {
+        try {
+            Sport selectedSport = sportTableView.getSelectionModel().getSelectedItem();
+            if (selectedSport != null) {
+                olympicGames.getSportList().remove(selectedSport);
+                sportTableView.getItems().remove(selectedSport);
+            }
+        } catch (Exception e) {
+            System.out.println("Error removing sport: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
 
     private void clearFields() {
         nameField.clear();

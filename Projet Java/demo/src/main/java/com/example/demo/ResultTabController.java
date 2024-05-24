@@ -38,6 +38,8 @@ public class ResultTabController {
     private ComboBox<MedalType> medalComboBox;
     @FXML
     private Button addResultButton;
+    @FXML
+    private Button removeResultButton;
 
     private OlympicGames olympicGames;
     private ObservableList<Result> resultList;
@@ -53,6 +55,7 @@ public class ResultTabController {
         });
         medalComboBox.setItems(FXCollections.observableArrayList(MedalType.values()));
     }
+
     private void updateAthleteComboBox() {
         athleteComboBox.setItems(olympicGames.getAthletes());
     }
@@ -60,14 +63,15 @@ public class ResultTabController {
     private void updateEventComboBox() {
         eventComboBox.setItems(olympicGames.getEvents());
     }
+
     public void setOlympicGames(OlympicGames olympicGames) {
         this.olympicGames = olympicGames;
         resultList = FXCollections.observableArrayList(olympicGames.getResults());
         resultTableView.setItems(resultList);
         athleteComboBox.setConverter(new StringConverter<Athlete>() {
             @Override
-            public String toString(Athlete Athlete) {
-                return Athlete != null ? Athlete.getName() : "";
+            public String toString(Athlete athlete) {
+                return athlete != null ? athlete.getName() : "";
             }
 
             @Override
@@ -78,8 +82,8 @@ public class ResultTabController {
         athleteComboBox.setItems(FXCollections.observableArrayList(olympicGames.getAthletes()));
         eventComboBox.setConverter(new StringConverter<Event>() {
             @Override
-            public String toString(Event Event) {
-                return Event != null ? Event.getName() : "";
+            public String toString(Event event) {
+                return event != null ? event.getName() : "";
             }
 
             @Override
@@ -113,6 +117,20 @@ public class ResultTabController {
             System.out.println("Invalid position or score format: " + e.getMessage());
         } catch (Exception e) {
             System.out.println("Error adding result: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void removeResult() {
+        try {
+            Result selectedResult = resultTableView.getSelectionModel().getSelectedItem();
+            if (selectedResult != null) {
+                olympicGames.getResults().remove(selectedResult);
+                resultTableView.getItems().remove(selectedResult);
+            }
+        } catch (Exception e) {
+            System.out.println("Error removing result: " + e.getMessage());
             e.printStackTrace();
         }
     }

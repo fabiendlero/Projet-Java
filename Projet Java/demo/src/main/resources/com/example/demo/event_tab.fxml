@@ -42,5 +42,7 @@
         <ComboBox fx:id="sportComboBox" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
         <Button fx:id="addEventButton" mnemonicParsing="false" onAction="#addEvent" text="Ajouter l'épreuve" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <Button fx:id="removeEventButton" mnemonicParsing="false" onAction="#removeEvent" text="Supprimer l'épreuve" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
     </GridPane>
 </VBox>

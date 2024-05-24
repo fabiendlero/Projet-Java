@@ -24,6 +24,8 @@ public class EventTabController {
     private ComboBox<Sport> sportComboBox;
     @FXML
     private Button addEventButton;
+    @FXML
+    private Button removeEventButton;
 
     private OlympicGames olympicGames;
     private ObservableList<Event> eventList;
@@ -32,9 +34,11 @@ public class EventTabController {
         nameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().name));
         sportColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().sport.name));
     }
+
     private void updateSportComboBox() {
         sportComboBox.setItems(olympicGames.getSportList());
     }
+
     public void setOlympicGames(OlympicGames olympicGames) {
         this.olympicGames = olympicGames;
         eventList = olympicGames.getEvents();
@@ -53,9 +57,6 @@ public class EventTabController {
         updateSportComboBox();
     }
 
-
-
-
     @FXML
     private void addEvent() {
         try {
@@ -73,10 +74,22 @@ public class EventTabController {
         }
     }
 
+    @FXML
+    private void removeEvent() {
+        try {
+            Event selectedEvent = eventTableView.getSelectionModel().getSelectedItem();
+            if (selectedEvent != null) {
+                olympicGames.getEvents().remove(selectedEvent);
+                eventTableView.getItems().remove(selectedEvent);
+            }
+        } catch (Exception e) {
+            System.out.println("Error removing event: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
     private void clearFields() {
         nameField.clear();
         sportComboBox.getSelectionModel().clearSelection();
     }
-
-
 }
