@@ -5,7 +5,6 @@ import javafx.collections.ObservableList;
 
 import java.io.*;
 import java.util.*;
-import java.util.Scanner;
 
 class OlympicGames {
     String location;
@@ -40,6 +39,10 @@ class OlympicGames {
 
     void addAthlete(Athlete athlete) {
         athletes.add(athlete);
+    }
+
+    public void removeAthlete(Athlete athlete) {
+        athletes.remove(athlete);
     }
 
     void addEvent(Event event) {

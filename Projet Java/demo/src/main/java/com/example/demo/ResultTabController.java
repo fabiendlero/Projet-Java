@@ -138,6 +138,20 @@ public class ResultTabController {
         }
     }
 
+    @FXML
+    private void removeResult() {
+        try {
+            Result selectedResult = resultTableView.getSelectionModel().getSelectedItem();
+            if (selectedResult != null) {
+                olympicGames.getResults().remove(selectedResult);
+                resultTableView.getItems().remove(selectedResult);
+            }
+        } catch (Exception e) {
+            System.out.println("Error removing result: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
     private void clearFields() {
         athleteComboBox.getSelectionModel().clearSelection();
         eventComboBox.getSelectionModel().clearSelection();

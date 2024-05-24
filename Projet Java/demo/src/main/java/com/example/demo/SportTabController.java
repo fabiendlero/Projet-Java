@@ -53,6 +53,20 @@ public class SportTabController {
         }
     }
 
+    @FXML
+    private void removeSport() {
+        try {
+            Sport selectedSport = sportTableView.getSelectionModel().getSelectedItem();
+            if (selectedSport != null) {
+                olympicGames.getSportList().remove(selectedSport);
+                sportTableView.getItems().remove(selectedSport);
+            }
+        } catch (Exception e) {
+            System.out.println("Error removing sport: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
     private void clearFields() {
         nameField.clear();
     }

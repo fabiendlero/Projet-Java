@@ -81,6 +81,20 @@ public class EventTabController {
         }
     }
 
+    @FXML
+    private void removeEvent() {
+        try {
+            Event selectedEvent = eventTableView.getSelectionModel().getSelectedItem();
+            if (selectedEvent != null) {
+                olympicGames.getEvents().remove(selectedEvent);
+                eventTableView.getItems().remove(selectedEvent);
+            }
+        } catch (Exception e) {
+            System.out.println("Error removing event: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
     private void clearFields() {
         nameField.clear();
         sportComboBox.getSelectionModel().clearSelection();
