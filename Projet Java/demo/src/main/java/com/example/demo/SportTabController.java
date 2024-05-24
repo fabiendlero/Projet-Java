@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.TextFieldTableCell;
 
 public class SportTabController {
     @FXML
@@ -20,6 +21,16 @@ public class SportTabController {
     private ObservableList<Sport> sportList;
 
     public void initialize() {
+        // Configurez la TableView pour permettre l'édition en ligne
+        sportTableView.setEditable(true);
+        nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+
+        // Ajoutez le gestionnaire d'événements de double-clic
+        nameColumn.setOnEditCommit(event -> {
+            Sport editedSport = event.getRowValue();
+            editedSport.setSport(event.getNewValue());
+        });
+
         nameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().name));
     }
 
@@ -41,7 +52,6 @@ public class SportTabController {
             e.printStackTrace();
         }
     }
-
 
     private void clearFields() {
         nameField.clear();

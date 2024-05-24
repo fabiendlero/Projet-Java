@@ -16,4 +16,16 @@ class Result implements Serializable {
         this.score = score;
         this.medal = medal;
     }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
+    public void setScore(double score) {
+        this.score = score;
+    }
+    
+    public void setMedal(Medal medal) {
+        this.medal = medal;
+    }
 }

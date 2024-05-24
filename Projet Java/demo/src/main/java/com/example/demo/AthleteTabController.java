@@ -7,6 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.util.converter.IntegerStringConverter;
 
 public class AthleteTabController {
     @FXML
@@ -39,6 +41,31 @@ public class AthleteTabController {
         countryColumn.setCellValueFactory(cellData -> cellData.getValue().countryProperty());
         ageColumn.setCellValueFactory(cellData -> cellData.getValue().ageProperty().asObject());
         genderColumn.setCellValueFactory(cellData -> cellData.getValue().genderProperty());
+
+        // Ajoutez le gestionnaire d'événements de double-clic
+        nameColumn.setOnEditCommit(event -> {
+            Athlete athlete = event.getRowValue();
+            athlete.setName(event.getNewValue());
+        });
+        countryColumn.setOnEditCommit(event -> {
+            Athlete athlete = event.getRowValue();
+            athlete.setCountry(event.getNewValue());
+        });
+        ageColumn.setOnEditCommit(event -> {
+            Athlete athlete = event.getRowValue();
+            athlete.setAge(event.getNewValue());
+        });
+        genderColumn.setOnEditCommit(event -> {
+            Athlete athlete = event.getRowValue();
+            athlete.setGender(event.getNewValue());
+        });
+
+        // Configurez la TableView pour permettre l'édition en ligne
+        athleteTableView.setEditable(true);
+        nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        countryColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        ageColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        genderColumn.setCellFactory(TextFieldTableCell.forTableColumn());
     }
 
     public void setOlympicGames(OlympicGames olympicGames) {
@@ -50,7 +77,6 @@ public class AthleteTabController {
     @FXML
     private void addAthlete() {
         try {
-            System.out.println("");
             String name = nameField.getText();
             String country = countryField.getText();
             int age = Integer.parseInt(ageField.getText());

@@ -9,6 +9,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.StringConverter;
 
 public class EventTabController {
@@ -29,6 +30,15 @@ public class EventTabController {
     private ObservableList<Event> eventList;
 
     public void initialize() {
+        // Configurez la TableView pour permettre l'édition en ligne
+        eventTableView.setEditable(true);
+        nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+
+        // Ajoutez le gestionnaire d'événements de double-clic pour le nom
+        nameColumn.setOnEditCommit(event -> {
+            Event editedEvent = event.getRowValue();
+            editedEvent.setName(event.getNewValue());
+        });
         nameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().name));
         sportColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().sport.name));
     }
@@ -52,8 +62,6 @@ public class EventTabController {
         });
         updateSportComboBox();
     }
-
-
 
 
     @FXML

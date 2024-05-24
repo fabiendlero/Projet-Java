@@ -11,7 +11,11 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.ComboBoxTableCell;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.StringConverter;
+import javafx.util.converter.DoubleStringConverter;
+import javafx.util.converter.IntegerStringConverter;
 
 public class ResultTabController {
     @FXML
@@ -43,6 +47,23 @@ public class ResultTabController {
     private ObservableList<Result> resultList;
 
     public void initialize() {
+        // Configurez la TableView pour permettre l'édition en ligne
+        resultTableView.setEditable(true);
+        positionColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        scoreColumn.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
+
+        // Ajoutez les gestionnaires d'événements de double-clic
+        positionColumn.setOnEditCommit(event -> {
+            Result editedResult = event.getRowValue();
+            editedResult.setPosition(event.getNewValue());
+        });
+        scoreColumn.setOnEditCommit(event -> {
+            Result editedResult = event.getRowValue();
+            editedResult.setScore(event.getNewValue());
+        });
+        
+
+
         athleteColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().athlete.getName()));
         eventColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().event.name));
         positionColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().position).asObject());

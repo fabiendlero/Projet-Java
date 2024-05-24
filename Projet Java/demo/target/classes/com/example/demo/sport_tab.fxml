@@ -35,6 +35,6 @@
         <Label text="Sport:" />
         <TextField fx:id="nameField" GridPane.columnIndex="1" />
 
-        <Button fx:id="addSportButton" mnemonicParsing="false" onAction="#addSport" text="Ajouter" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <Button fx:id="addSportButton" mnemonicParsing="false" onAction="#addSport" text="Ajouter Sport" GridPane.columnIndex="1" GridPane.rowIndex="1" />
     </GridPane>
 </VBox>

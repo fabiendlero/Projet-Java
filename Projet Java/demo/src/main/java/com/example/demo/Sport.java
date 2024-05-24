@@ -11,6 +11,10 @@ class Sport implements Serializable {
         this.name = name;
     }
 
+    public void setSport(String name) {
+        this.name = name;
+    }
+    
     void addEvent(Event event) {
         events.add(event);
     }
