@@ -96,12 +96,13 @@ public class AthleteTabController {
     private void deleteAthlete() {
         Athlete selectedAthlete = athleteTableView.getSelectionModel().getSelectedItem();
         if (selectedAthlete != null) {
-            olympicGames.removeAthlete(selectedAthlete);
-            athleteList.remove(selectedAthlete);
+            olympicGames.getAthletes().remove(selectedAthlete);
+            athleteTableView.getItems().remove(selectedAthlete);
         } else {
             System.out.println("No athlete selected for deletion.");
         }
     }
+
 
     private void clearFields() {
         nameField.clear();

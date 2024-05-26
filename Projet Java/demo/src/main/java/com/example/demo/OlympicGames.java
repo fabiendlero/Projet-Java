@@ -41,10 +41,6 @@ class OlympicGames {
         athletes.add(athlete);
     }
 
-    public void removeAthlete(Athlete athlete) {
-        athletes.remove(athlete);
-    }
-
     void addEvent(Event event) {
         events.add(event);
     }
@@ -79,9 +75,6 @@ class OlympicGames {
             throw new RuntimeException(e);
         }
     }
-
-
-
 
     public List<Result> getResults() {
         return results;
