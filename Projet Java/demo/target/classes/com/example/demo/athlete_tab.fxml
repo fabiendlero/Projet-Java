@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -12,9 +13,12 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
+
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
 <VBox minHeight="1000" minWidth="800.0" spacing="20.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.AthleteTabController" style="-fx-background-color: #2c3e50; -fx-padding: 20;" stylesheets="@styles.css">
     <Label text="Gestion des Athlètes" textFill="WHITE" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-underline: true;" />
-    
+
     <TableView fx:id="athleteTableView" prefHeight="342.0" prefWidth="779.0" style="-fx-background-color: #34495e; -fx-background-radius: 10; -fx-padding: 10;">
         <columns>
             <TableColumn fx:id="nameColumn" prefWidth="300.0" text="Nom" style="-fx-font-size: 14px; -fx-text-fill: black;" />
@@ -34,24 +38,29 @@
             <RowConstraints />
             <RowConstraints />
             <RowConstraints />
-            <RowConstraints />
         </rowConstraints>
 
-        <Label text="Nom:" textFill="WHITE" style="-fx-font-size: 14px;" />
-        <TextField fx:id="nameField" GridPane.columnIndex="1" style="-fx-background-color: #ecf0f1; -fx-text-fill: #2c3e50;" />
+        <Label text="Nom:" style="-fx-text-fill: white;" />
+        <TextField fx:id="nameField" GridPane.columnIndex="1" />
 
-        <Label text="Pays:" GridPane.rowIndex="1" textFill="WHITE" style="-fx-font-size: 14px;" />
-        <TextField fx:id="countryField" GridPane.columnIndex="1" GridPane.rowIndex="1" style="-fx-background-color: #ecf0f1; -fx-text-fill: #2c3e50;" />
+        <Label text="Pays:" GridPane.rowIndex="1" style="-fx-text-fill: white;" />
+        <TextField fx:id="countryField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-        <Label text="Âge:" GridPane.rowIndex="2" textFill="WHITE" style="-fx-font-size: 14px;" />
-        <TextField fx:id="ageField" GridPane.columnIndex="1" GridPane.rowIndex="2" style="-fx-background-color: #ecf0f1; -fx-text-fill: #2c3e50;" />
+        <Label text="Âge:" GridPane.rowIndex="2" style="-fx-text-fill: white;" />
+        <TextField fx:id="ageField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
-        <Label text="Sexe:" GridPane.rowIndex="3" textFill="WHITE" style="-fx-font-size: 14px;" />
-        <TextField fx:id="genderField" GridPane.columnIndex="1" GridPane.rowIndex="3" style="-fx-background-color: #ecf0f1; -fx-text-fill: #2c3e50;" />
-        
-        <HBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="4">
-            <Button fx:id="addAthleteButton" mnemonicParsing="false" onAction="#addAthlete" text="Ajouter"/>
-            <Button fx:id="deleteAthleteButton" styleClass="button-62" mnemonicParsing="false" onAction="#deleteAthlete" text="Supprimer" />
-        </HBox>
+        <Label text="Sexe:" GridPane.rowIndex="3" style="-fx-text-fill: white;" />
+        <ComboBox fx:id="genderField" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="homme" />
+                    <String fx:value="femme" />
+                    <String fx:value="autre" />
+                </FXCollections>
+            </items>
+        </ComboBox>
+
+        <Button fx:id="addAthleteButton" mnemonicParsing="false" onAction="#addAthlete" text="Ajouter" GridPane.columnIndex="1" GridPane.rowIndex="4" style="-fx-background-color: #3498db; -fx-text-fill: white;" />
+        <Button fx:id="deleteAthleteButton" mnemonicParsing="false" onAction="#deleteAthlete" text="Supprimer l'athlète" GridPane.columnIndex="1" GridPane.rowIndex="5" style="-fx-background-color: #e74c3c; -fx-text-fill: white;" />
     </GridPane>
 </VBox>

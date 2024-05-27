@@ -64,3 +64,4 @@
         <Button fx:id="deleteAthleteButton" mnemonicParsing="false" onAction="#deleteAthlete" text="Supprimer l'athlète" GridPane.columnIndex="1" GridPane.rowIndex="5" style="-fx-background-color: #e74c3c; -fx-text-fill: white;" />
     </GridPane>
 </VBox>
+        <!-- fabien-->
