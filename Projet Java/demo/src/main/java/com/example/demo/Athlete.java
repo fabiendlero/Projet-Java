@@ -64,4 +64,3 @@ public class Athlete {
         return gender;
     }
 }
-//fabien1

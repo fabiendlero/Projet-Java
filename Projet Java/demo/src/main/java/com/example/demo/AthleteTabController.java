@@ -9,8 +9,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.converter.IntegerStringConverter;
-import javafx.scene.control.ComboBox;
-
 
 public class AthleteTabController {
 
@@ -27,7 +25,7 @@ public class AthleteTabController {
     @FXML
     private TextField nameField;
     @FXML
-    private TextField countryField;
+    private ComboBox<String> countryField;
     @FXML
     private TextField ageField;
     @FXML
@@ -43,7 +41,8 @@ public class AthleteTabController {
         ageColumn.setCellValueFactory(cellData -> cellData.getValue().ageProperty().asObject());
         genderColumn.setCellValueFactory(cellData -> cellData.getValue().genderProperty());
 
-        // Set up the ComboBox
+        // Set up the ComboBoxes
+        countryField.setItems(FXCollections.observableArrayList("FRA", "USA", "GBR", "CAN", "GER"));
         genderField.setItems(FXCollections.observableArrayList("homme", "femme", "autre"));
 
         // Add editing capabilities to the TableView
@@ -85,7 +84,7 @@ public class AthleteTabController {
     private void addAthlete() {
         try {
             String name = nameField.getText();
-            String country = countryField.getText();
+            String country = countryField.getValue();
             int age = Integer.parseInt(ageField.getText());
             String gender = genderField.getValue();
             Athlete athlete = new Athlete(name, country, age, gender);
@@ -112,9 +111,8 @@ public class AthleteTabController {
 
     private void clearFields() {
         nameField.clear();
-        countryField.clear();
+        countryField.setValue(null);
         ageField.clear();
         genderField.setValue(null);
     }
 }
-//fabien1
