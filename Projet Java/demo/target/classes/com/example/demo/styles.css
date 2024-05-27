@@ -1,0 +1,16 @@
+/* styles.css */
+
+
+.button {
+    -fx-font-size: 14px;
+    -fx-text-fill: white;
+}
+
+#addAthleteButton {
+    -fx-background-color: #27ae60;
+}
+
+#deleteAthleteButton {
+    -fx-background-color: rgb(255, 0, 0);
+}
+

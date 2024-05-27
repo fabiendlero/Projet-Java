@@ -31,7 +31,7 @@ public class OlympicGamesApp extends Application {
         tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE); // Disable tab closing
 
         VBox root = new VBox(tabPane);
-        Scene scene = new Scene(root, 800, 600);
+        Scene scene = new Scene(root, 1000, 800);
         primaryStage.setTitle("Gestion des Jeux Olympiques 2024");
         primaryStage.setScene(scene);
         primaryStage.show();
