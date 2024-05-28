@@ -23,19 +23,17 @@ class OlympicGames {
         return events;
     }
 
-
     public ObservableList<Athlete> getAthletes() {
         return athletes;
     }
 
-
     public void addSport(Sport sport) {
         sportList.add(sport);
     }
+
     OlympicGames(String location) {
         this.location = location;
     }
-
 
     void addAthlete(Athlete athlete) {
         athletes.add(athlete);
@@ -47,9 +45,8 @@ class OlympicGames {
 
     void recordResult(Result result) {
         results.add(result);
-        medalTable.updateMedals(result.athlete.getCountry(), result.medal);
+        medalTable.updateMedals(result.getAthlete().getCountry(), result.getMedal());
     }
-
 
     void saveData() {
         try (PrintWriter writer = new PrintWriter(new FileWriter("olympic_data.txt"))) {
@@ -68,8 +65,8 @@ class OlympicGames {
             }
             writer.println("Results:");
             for (Result result : results) {
-                writer.println(result.athlete.getName() + "," + result.event.name + "," + result.position + "," + result.score + "," +
-                        (result.medal != null ? result.medal.type.toString() : ""));
+                writer.println(result.getAthlete().getName() + "," + result.event.name + "," + result.position + "," + result.score + "," +
+                        (result.getMedal() != null ? result.getMedal().getType().toString() : ""));
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -139,7 +136,8 @@ class OlympicGames {
                                     String eventName = parts[1].trim();
                                     int position = Integer.parseInt(parts[2].trim());
                                     double score = Double.parseDouble(parts[3].trim());
-                                    Medal medal = parts.length > 4 && !parts[4].isEmpty() ? new Medal(MedalType.valueOf(parts[4].trim()), 1) : null;
+                                    MedalType medalType = parts.length > 4 && !parts[4].isEmpty() ? MedalType.valueOf(parts[4].trim()) : null;
+                                    Medal medal = medalType != null ? new Medal(medalType) : null;
                                     Athlete athlete = olympicGames.athletes.stream()
                                             .filter(a -> a.getName().equals(athleteName))
                                             .findFirst()
@@ -163,5 +161,4 @@ class OlympicGames {
         }
         return olympicGames;
     }
-
 }

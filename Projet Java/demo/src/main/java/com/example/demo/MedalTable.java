@@ -18,3 +18,4 @@ class MedalTable implements Serializable {
         return countryMedals.getOrDefault(country, new ArrayList<>());
     }
 }
+

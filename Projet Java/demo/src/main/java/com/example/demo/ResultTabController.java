@@ -13,6 +13,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import javafx.util.converter.DoubleStringConverter;
 import javafx.util.converter.IntegerStringConverter;
@@ -22,6 +23,8 @@ public class ResultTabController {
     private TableView<Result> resultTableView;
     @FXML
     private TableColumn<Result, String> athleteColumn;
+    @FXML
+    private TableColumn<Result, String> countryColumn;
     @FXML
     private TableColumn<Result, String> eventColumn;
     @FXML
@@ -61,16 +64,15 @@ public class ResultTabController {
             Result editedResult = event.getRowValue();
             editedResult.setScore(event.getNewValue());
         });
-        
 
-
-        athleteColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().athlete.getName()));
+        athleteColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAthlete().getName()));
+        // countryColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAthlete().getCountry()));
         eventColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().event.name));
         positionColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().position).asObject());
         scoreColumn.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().score).asObject());
         medalColumn.setCellValueFactory(cellData -> {
-            Medal medal = cellData.getValue().medal;
-            return new SimpleStringProperty(medal != null ? medal.type.toString() : "");
+            Medal medal = cellData.getValue().getMedal();
+            return new SimpleStringProperty(medal != null ? medal.getType().toString() : "");
         });
         medalComboBox.setItems(FXCollections.observableArrayList(MedalType.values()));
     }
@@ -114,6 +116,29 @@ public class ResultTabController {
     }
 
     @FXML
+    private void showRanking() {
+        // Créez une instance de MedalTable
+        MedalTable medalTable = new MedalTable();
+
+        // Remplissez la MedalTable avec les médailles des résultats
+        for (Result result : olympicGames.getResults()) {
+            String country = result.getAthlete().getCountry();
+            Medal medal = result.getMedal();
+            if (medal != null) {
+                medalTable.updateMedals(country, medal);
+            }
+        }
+
+        // Créez une nouvelle fenêtre ou un nouveau panneau pour afficher le classement
+        Stage rankingStage = new Stage();
+        rankingStage.setTitle("Classement des pays");
+
+        // Créez un contrôleur pour gérer l'affichage du classement
+        RankingController rankingController = new RankingController(medalTable);
+        rankingController.showRanking(rankingStage);
+    }
+
+    @FXML
     private void addResult() {
         try {
             Athlete selectedAthlete = athleteComboBox.getValue();
@@ -121,7 +146,7 @@ public class ResultTabController {
             int position = Integer.parseInt(positionField.getText());
             double score = Double.parseDouble(scoreField.getText());
             MedalType medalType = medalComboBox.getValue();
-            Medal medal = medalType != null ? new Medal(medalType, 1) : null;
+            Medal medal = medalType != null ? new Medal(medalType) : null;
             if (selectedAthlete != null && selectedEvent != null) {
                 Result result = new Result(selectedAthlete, selectedEvent, position, score, medal);
                 olympicGames.recordResult(result);

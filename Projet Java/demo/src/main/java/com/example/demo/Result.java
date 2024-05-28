@@ -28,4 +28,12 @@ class Result implements Serializable {
     public void setMedal(Medal medal) {
         this.medal = medal;
     }
+
+    public Athlete getAthlete() {
+        return athlete;
+    }
+
+    public Medal getMedal() {
+        return medal;
+    }
 }

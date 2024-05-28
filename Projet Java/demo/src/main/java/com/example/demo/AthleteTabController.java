@@ -7,7 +7,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.converter.IntegerStringConverter;
 
@@ -34,8 +33,6 @@ public class AthleteTabController {
 
     private OlympicGames olympicGames;
     private ObservableList<Athlete> athleteList;
-    private ObservableList<String> countries = FXCollections.observableArrayList("FRA", "USA", "GBR", "CAN", "GER");
-    private ObservableList<String> genders = FXCollections.observableArrayList("Homme", "Femme", "Autre");
 
     @FXML
     public void initialize() {
@@ -45,23 +42,13 @@ public class AthleteTabController {
         genderColumn.setCellValueFactory(cellData -> cellData.getValue().genderProperty());
 
         // Set up the ComboBoxes
-        countryField.setItems(countries);
-        genderField.setItems(genders);
+        countryField.setItems(FXCollections.observableArrayList("FRA", "USA", "GBR", "CAN", "GER"));
+        genderField.setItems(FXCollections.observableArrayList("Homme", "Femme", "Autre"));
 
         // Add editing capabilities to the TableView
-        nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        countryColumn.setCellFactory(ComboBoxTableCell.forTableColumn(countries));
-        ageColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-        genderColumn.setCellFactory(ComboBoxTableCell.forTableColumn(genders));
-
         nameColumn.setOnEditCommit(event -> {
             Athlete athlete = event.getRowValue();
             athlete.setName(event.getNewValue());
-        });
-
-        countryColumn.setOnEditCommit(event -> {
-            Athlete athlete = event.getRowValue();
-            athlete.setCountry(event.getNewValue());
         });
 
         ageColumn.setOnEditCommit(event -> {
@@ -69,13 +56,12 @@ public class AthleteTabController {
             athlete.setAge(event.getNewValue());
         });
 
-        genderColumn.setOnEditCommit(event -> {
-            Athlete athlete = event.getRowValue();
-            athlete.setGender(event.getNewValue());
-        });
-
         // Configure the TableView to allow inline editing
         athleteTableView.setEditable(true);
+        nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        countryColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        ageColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        genderColumn.setCellFactory(TextFieldTableCell.forTableColumn());
     }
 
     public void setOlympicGames(OlympicGames olympicGames) {

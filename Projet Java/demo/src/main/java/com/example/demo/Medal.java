@@ -3,11 +3,15 @@ package com.example.demo;
 import java.io.Serializable;
 
 public class Medal implements Serializable {
-    MedalType type;
-    int count;
-
-    Medal(MedalType type, int count) {
+    private MedalType type;
+    
+    public Medal(MedalType type) {
         this.type = type;
-        this.count = count;
     }
+
+    public MedalType getType() {
+        return type;
+    }
+    
 }
+
