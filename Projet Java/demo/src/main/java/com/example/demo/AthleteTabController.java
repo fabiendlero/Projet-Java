@@ -59,9 +59,7 @@ public class AthleteTabController {
         // Configure the TableView to allow inline editing
         athleteTableView.setEditable(true);
         nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        countryColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         ageColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-        genderColumn.setCellFactory(TextFieldTableCell.forTableColumn());
     }
 
     public void setOlympicGames(OlympicGames olympicGames) {
