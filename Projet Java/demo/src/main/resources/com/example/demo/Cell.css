@@ -1,0 +1,22 @@
+.cell_container{
+    -fx-background-color: #FFFFFF;
+    -fx-effect: dropshadow(three-pass-box, #000000, 5, 0.5, 0, 0.5);
+    -fx-background-radius: 10;
+}
+
+.cell_container HBox {
+    -fx-spacing: 20;
+    -fx-alignment: Center_left;
+}
+
+.cell_container HBox Label {
+    -fx-text-fill: #132A13;
+    -fx-font-family: "Calibri Light";
+    -fx-font-size: 1.5em;
+}
+
+.cell_container HBox Text {
+    -fx-text-fill: #132A13;
+    -fx-font-family: "Calibri Light";
+    -fx-font-size: 1.5em;
+}

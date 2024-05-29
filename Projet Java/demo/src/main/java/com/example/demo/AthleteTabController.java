@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -14,7 +15,7 @@ import javafx.util.converter.IntegerStringConverter;
 public class AthleteTabController {
 
     @FXML
-    private TableView<Athlete> athleteTableView;
+    private ListView<Athlete> athleteTableView;
     @FXML
     private TableColumn<Athlete, String> nameColumn;
     @FXML
@@ -82,6 +83,8 @@ public class AthleteTabController {
         this.olympicGames = olympicGames;
         athleteList = olympicGames.getAthletes();
         athleteTableView.setItems(athleteList);
+        athleteTableView.setCellFactory(e -> new AthleteCellFactory());
+        
     }
 
     @FXML

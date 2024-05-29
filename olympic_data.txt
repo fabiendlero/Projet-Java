@@ -1,6 +1,10 @@
 Location: New Olympic Games
 Sports:
+Football
 Athletes:
+Jean Jacque,Republique Dominicaine du Congo,42,Male
 C Moi,FR,29,Male
 Events:
+Tournoi dans la rue,Football
 Results:
+C Moi,Tournoi dans la rue,1,5.0,GOLD
