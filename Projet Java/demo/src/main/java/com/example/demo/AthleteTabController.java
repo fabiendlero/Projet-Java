@@ -15,7 +15,7 @@ import javafx.util.converter.IntegerStringConverter;
 public class AthleteTabController {
 
     @FXML
-    private ListView<Athlete> athleteTableView;
+    private ListView<Athlete> athleteListView;
     @FXML
     private TableColumn<Athlete, String> nameColumn;
     @FXML
@@ -35,55 +35,23 @@ public class AthleteTabController {
 
     private OlympicGames olympicGames;
     private ObservableList<Athlete> athleteList;
-    private ObservableList<String> countries = FXCollections.observableArrayList("FRA", "USA", "GBR", "CAN", "GER");
+    private ObservableList<String> countries = FXCollections.observableArrayList("France", "United States", "United Kingdom", "Canada", "Germany");
     private ObservableList<String> genders = FXCollections.observableArrayList("Homme", "Femme", "Autre");
 
     @FXML
     public void initialize() {
-        nameColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
-        countryColumn.setCellValueFactory(cellData -> cellData.getValue().countryProperty());
-        ageColumn.setCellValueFactory(cellData -> cellData.getValue().ageProperty().asObject());
-        genderColumn.setCellValueFactory(cellData -> cellData.getValue().genderProperty());
-
         // Set up the ComboBoxes
         countryField.setItems(countries);
         genderField.setItems(genders);
 
-        // Add editing capabilities to the TableView
-        nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        countryColumn.setCellFactory(ComboBoxTableCell.forTableColumn(countries));
-        ageColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-        genderColumn.setCellFactory(ComboBoxTableCell.forTableColumn(genders));
-
-        nameColumn.setOnEditCommit(event -> {
-            Athlete athlete = event.getRowValue();
-            athlete.setName(event.getNewValue());
-        });
-
-        countryColumn.setOnEditCommit(event -> {
-            Athlete athlete = event.getRowValue();
-            athlete.setCountry(event.getNewValue());
-        });
-
-        ageColumn.setOnEditCommit(event -> {
-            Athlete athlete = event.getRowValue();
-            athlete.setAge(event.getNewValue());
-        });
-
-        genderColumn.setOnEditCommit(event -> {
-            Athlete athlete = event.getRowValue();
-            athlete.setGender(event.getNewValue());
-        });
-
-        // Configure the TableView to allow inline editing
-        athleteTableView.setEditable(true);
+        athleteListView.setItems(athleteList);
+        athleteListView.setCellFactory(e -> new AthleteCellFactory());
     }
 
     public void setOlympicGames(OlympicGames olympicGames) {
         this.olympicGames = olympicGames;
         athleteList = olympicGames.getAthletes();
-        athleteTableView.setItems(athleteList);
-        athleteTableView.setCellFactory(e -> new AthleteCellFactory());
+        athleteListView.setItems(athleteList);
         
     }
 
@@ -107,10 +75,10 @@ public class AthleteTabController {
 
     @FXML
     private void deleteAthlete() {
-        Athlete selectedAthlete = athleteTableView.getSelectionModel().getSelectedItem();
+        Athlete selectedAthlete = athleteListView.getSelectionModel().getSelectedItem();
         if (selectedAthlete != null) {
             olympicGames.getAthletes().remove(selectedAthlete);
-            athleteTableView.getItems().remove(selectedAthlete);
+            athleteListView.getItems().remove(selectedAthlete);
         } else {
             System.out.println("No athlete selected for deletion.");
         }

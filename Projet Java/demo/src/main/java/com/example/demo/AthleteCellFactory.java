@@ -11,7 +11,7 @@ public class AthleteCellFactory extends ListCell<Athlete> {
             setText(null);
             setGraphic(null);
         } else {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/AthleteCell.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AthleteCell.fxml"));
             AthleteCellController controller = new AthleteCellController(athlete);
             loader.setController(controller);
             setText(null);

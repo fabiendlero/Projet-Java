@@ -55,7 +55,7 @@ public class AthleteCellController implements Initializable {
     }
 
     private void setFlag_img() throws IOException, ParseException {
-        Object obj = new JSONParser().parse(new FileReader("src/main/resources/Images/codes.json"));
+        Object obj = new JSONParser().parse(new FileReader("src/main/resources/com/example/demo/Images/codes.json"));
         JSONObject jo = (JSONObject) obj;
         jo.keySet().forEach(keyStr ->
         {

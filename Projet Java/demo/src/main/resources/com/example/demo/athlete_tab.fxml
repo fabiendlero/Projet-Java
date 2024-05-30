@@ -1,26 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.collections.FXCollections?>
-<?import java.lang.String?>
+<VBox minHeight="1000" minWidth="800.0" spacing="20.0" style="-fx-background-color: #2c3e50; -fx-padding: 20;" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.AthleteTabController">
+    <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-underline: true;" text="Gestion des Athlètes" textFill="WHITE" />
 
-<VBox minHeight="1000" minWidth="800.0" spacing="20.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.AthleteTabController" style="-fx-background-color: #2c3e50; -fx-padding: 20;" stylesheets="@styles.css">
-    <Label text="Gestion des Athlètes" textFill="WHITE" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-underline: true;" />
-
-    <ListView fx:id="athleteTableView" prefHeight="342.0" prefWidth="779.0" style="-fx-background-color: #34495e; -fx-background-radius: 10; -fx-padding: 10;">
-    </ListView>
-
-    <GridPane hgap="10.0" vgap="10.0" style="-fx-background-color: #34495e; -fx-background-radius: 10; -fx-padding: 20;">
+    <GridPane hgap="10.0" style="-fx-background-color: #34495e; -fx-background-radius: 10; -fx-padding: 20;" vgap="10.0">
         <columnConstraints>
             <ColumnConstraints halignment="RIGHT" />
             <ColumnConstraints hgrow="ALWAYS" />
@@ -30,12 +25,14 @@
             <RowConstraints />
             <RowConstraints />
             <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
         </rowConstraints>
 
-        <Label text="Nom:" style="-fx-text-fill: white;" />
+        <Label style="-fx-text-fill: white;" text="Nom:" />
         <TextField fx:id="nameField" GridPane.columnIndex="1" />
 
-        <Label text="Pays:" GridPane.rowIndex="1" style="-fx-text-fill: white;" />
+        <Label style="-fx-text-fill: white;" text="Pays:" GridPane.rowIndex="1" />
         <ComboBox fx:id="countryField" GridPane.columnIndex="1" GridPane.rowIndex="1">
             <items>
                 <FXCollections fx:factory="observableArrayList">
@@ -48,10 +45,10 @@
             </items>
         </ComboBox>
 
-        <Label text="Âge:" GridPane.rowIndex="2" style="-fx-text-fill: white;" />
+        <Label style="-fx-text-fill: white;" text="Âge:" GridPane.rowIndex="2" />
         <TextField fx:id="ageField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
-        <Label text="Sexe:" GridPane.rowIndex="3" style="-fx-text-fill: white;" />
+        <Label style="-fx-text-fill: white;" text="Sexe:" GridPane.rowIndex="3" />
         <ComboBox fx:id="genderField" GridPane.columnIndex="1" GridPane.rowIndex="3">
             <items>
                 <FXCollections fx:factory="observableArrayList">
@@ -62,7 +59,8 @@
             </items>
         </ComboBox>
 
-        <Button fx:id="addAthleteButton" mnemonicParsing="false" onAction="#addAthlete" text="Ajouter" GridPane.columnIndex="1" GridPane.rowIndex="4" style="-fx-background-color: #3498db; -fx-text-fill: white;" />
-        <Button fx:id="deleteAthleteButton" mnemonicParsing="false" onAction="#deleteAthlete" text="Supprimer l'athlète" GridPane.columnIndex="1" GridPane.rowIndex="5" style="-fx-background-color: #e74c3c; -fx-text-fill: white;" />
+        <Button fx:id="addAthleteButton" mnemonicParsing="false" onAction="#addAthlete" style="-fx-background-color: #3498db; -fx-text-fill: white;" text="Ajouter" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+        <Button fx:id="deleteAthleteButton" mnemonicParsing="false" onAction="#deleteAthlete" style="-fx-background-color: #e74c3c; -fx-text-fill: white;" text="Supprimer l'athlète" GridPane.columnIndex="1" GridPane.rowIndex="5" />
     </GridPane>
+   <ListView fx:id="athleteListView" style="-fx-background-color: #2c3e50" prefHeight="200.0" prefWidth="200.0" />
 </VBox>
